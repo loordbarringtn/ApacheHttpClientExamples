@@ -8,11 +8,10 @@ import java.io.IOException;
 
 public class RestClient {
 
-    public CloseableHttpResponse getRequest (String url) {
+    public static CloseableHttpResponse getRequest (String url) {
         try (CloseableHttpClient httpClient = HttpClients.createDefault();){
-        HttpGet httpget = new HttpGet(url); //http get request (create connection with particular url)
-        CloseableHttpResponse closebaleHttpResponse =  httpClient.execute(httpget); //hit the GET URL
-        return closebaleHttpResponse;
+        HttpGet httpget = new HttpGet(url); //http get request (create get connection with particular url)
+            return httpClient.execute(httpget);
     } catch (Exception e) {
             throw new RuntimeException(e.getMessage(), e);
         }
