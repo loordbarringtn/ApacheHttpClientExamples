@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 public class ApiTests {
@@ -87,6 +86,22 @@ public class ApiTests {
         while (scanner.hasNext()){
             System.out.println(scanner.next());
         }
+    }
+
+    @Test
+    public void postRequestTest() throws IOException {
+        String json = "{\n" +
+                "    \"name\": \"morpheus\",\n" +
+                "    \"job\": \"leader\"\n" +
+                "}";
+        CloseableHttpResponse closeableHttpResponse = RestClient.postRequest("https://reqres.in/api/users",json);
+        System.out.println(closeableHttpResponse.getStatusLine().getStatusCode());
+        Scanner scanner = new Scanner(closeableHttpResponse.getEntity().getContent());
+
+        while (scanner.hasNext()){
+            System.out.println(scanner.next());
+        }
+
     }
 
 
