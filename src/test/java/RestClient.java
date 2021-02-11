@@ -1,7 +1,9 @@
+import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpResponseException;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
@@ -10,6 +12,11 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class RestClient {
 
@@ -17,6 +24,13 @@ public class RestClient {
             CloseableHttpClient httpClient = HttpClients.createDefault();
             HttpGet httpget = new HttpGet(url); //http get request (create get connection with particular url)
             return httpClient.execute(httpget);
+    }
+
+    public static CloseableHttpResponse getRequestEndpoint (String endpoint) throws IOException, URISyntaxException {
+        URI uri = new URIBuilder("https://reqres.in/" + endpoint).build();
+        CloseableHttpClient httpClient = HttpClients.createDefault();
+        HttpGet httpget = new HttpGet(uri); //http get request (create get connection with particular url)
+        return httpClient.execute(httpget);
     }
 
     public static String getValueByJPath(JSONObject jsonResponse, String jsonPath){
