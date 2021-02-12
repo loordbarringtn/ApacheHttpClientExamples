@@ -4,7 +4,6 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
-
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.HashMap;
@@ -101,7 +100,6 @@ public class ApiTests {
         while (scanner.hasNext()){
             System.out.println(scanner.next());
         }
-
     }
 
 
